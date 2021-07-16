@@ -96,4 +96,32 @@ echo "houses: \n" . json_encode($houses, $options = JSON_PRETTY_PRINT) . "\n";
 ?>
 
 ```
+## Development
 
+This repository ships with a simple Docker setup for easy development.
+Setup your local environment for iterative testing:
+
+```
+> docker build -t se_php .
+> docker run --name se-php -dit -v ${PWD}:/root/php-sweph se_php
+```
+
+_The container `se-php` will run in the background._
+
+The easiest way to build and test is to start an interactive terminal:
+
+```
+> docker exec -it se-php bash
+> ./build-se
+``` 
+
+The `build-se` bash script will compile the PHP extension and install it for you.
+Run tests from the PHP command line via `php -a`.
+Repeat `build-se` execution runs as needed.
+
+When you're finished, exit the container and stop it:
+
+```
+> exit
+> docker stop se-php
+```
